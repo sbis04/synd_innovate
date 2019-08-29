@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:synd_innovate/sign_in_button.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -13,6 +14,7 @@ class LoginScreen extends StatelessWidget {
         ),
         SafeArea(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(
@@ -25,48 +27,89 @@ class LoginScreen extends StatelessWidget {
               Card(
                 elevation: 8,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(30),
                 ),
                 color: Colors.white70,
-                child: Column(
-                  children: <Widget>[
-                    Text('Login'),
-                    SizedBox(
-                      width: 300,
-                      child: FlatButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(30, 30, 30, 20),
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        'Login',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
                         ),
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.all(6.0),
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Image(
-                                    image: AssetImage(
-                                        "assets/images/google_logo.png"),
-                                    height: 35.0),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Text(
-                                    'Sign in with Google',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        onPressed: () {},
                       ),
-                    ),
-                  ],
+                      SizedBox(height: 25),
+                      SignInButton(
+                        buttonImage: 'google_logo.png',
+                        buttonText: 'Sign in with Google',
+                        buttonColor: Colors.white,
+                        textColor: Colors.grey,
+                      ),
+                      SizedBox(height: 25),
+                      SignInButton(
+                        buttonImage: 'face_logo.png',
+                        buttonText: 'Login in with Facebook',
+                        buttonColor: Color(0xff3A559F),
+                        textColor: Colors.white,
+                      ),
+                      SizedBox(height: 25),
+                      SignInButton(
+                        buttonImage: 'linkedin_logo.png',
+                        buttonText: 'Sign in with LinkedIn',
+                        buttonColor: Color(0xff007AB9),
+                        textColor: Colors.white,
+                      ),
+                      SizedBox(height: 25),
+                      FlatButton(
+                        child: Text('Sign in using OTP'),
+                        onPressed: () {},
+                      )
+                      // SizedBox(
+                      //   width: 300,
+                      //   child: FlatButton(
+                      //     shape: RoundedRectangleBorder(
+                      //       borderRadius: BorderRadius.circular(30),
+                      //     ),
+                      //     color: Color(0xff007AB9),
+                      //     child: Padding(
+                      //       padding: const EdgeInsets.all(6.0),
+                      //       child: Padding(
+                      //         padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+                      //         child: Row(
+                      //           mainAxisAlignment: MainAxisAlignment.start,
+                      //           children: <Widget>[
+                      //             Image(
+                      //                 image: AssetImage(
+                      //                     "assets/images/linkedin_logo.png"),
+                      //                 height: 45.0),
+                      //             Padding(
+                      //               padding: const EdgeInsets.only(left: 10),
+                      //               child: Text(
+                      //                 'Sign in with LinkedIn',
+                      //                 style: TextStyle(
+                      //                   color: Colors.white,
+                      //                   fontSize: 18,
+                      //                 ),
+                      //               ),
+                      //             )
+                      //           ],
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     onPressed: () {},
+                      //   ),
+                      // ),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  bottom: 0,
                 ),
               )
             ],
