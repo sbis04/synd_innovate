@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:synd_innovate/dashboard_screen.dart';
 
 class SignInButton extends StatelessWidget {
   final String buttonImage;
@@ -46,7 +47,15 @@ class SignInButton extends StatelessWidget {
             ),
           ),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) {
+                return DashboardScreen();
+              },
+            ),
+          );
+        },
       ),
     );
   }
