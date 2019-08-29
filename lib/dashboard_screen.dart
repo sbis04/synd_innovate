@@ -5,7 +5,33 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xFFFFA700),
+        elevation: 5.0,
+        child: Icon(
+          Icons.account_circle,
+          color: Colors.black87,
+          size: 70,
+        ),
+        onPressed: () {},
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      bottomNavigationBar: BottomAppBar(
+        color: Color(0xFFF6711D),
+        child: new Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Text(
+                '10 Leads',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+            )
+          ],
+        ),
+      ),
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
