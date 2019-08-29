@@ -40,7 +40,17 @@ class _SplashScreenState extends State<SplashScreen> {
               right: 15,
               left: 15,
             ),
-            child: Image.asset('assets/images/logo.png'),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Image.asset('assets/images/logo.png'),
+                CircularProgressIndicator(
+                  valueColor: new AlwaysStoppedAnimation<Color>(
+                    Color(0xFFF6711D),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

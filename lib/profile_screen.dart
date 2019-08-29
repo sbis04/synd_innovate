@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:synd_innovate/profile_info_row.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -89,82 +90,22 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 child: Column(
                   children: <Widget>[
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: <Widget>[
-                        Text(
-                          'Name: ',
-                          style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black54),
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: Text(
-                              'Souvik Biswas',
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.black),
-                            ),
-                          ),
-                        ),
-                        SvgPicture.asset(
-                          'assets/images/edit_outline.svg',
-                        ),
-                      ],
+                    ProfileInfoRow(
+                      rowKey: 'Name: ',
+                      rowValue: 'Souvik Biswas',
+                      assetName: 'check_mark.svg',
                     ),
                     SizedBox(height: 30),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: <Widget>[
-                        Text(
-                          'Gender: ',
-                          style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black54),
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: Text(
-                              'Male',
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.black),
-                            ),
-                          ),
-                        ),
-                        SvgPicture.asset(
-                          'assets/images/edit_outline.svg',
-                        ),
-                      ],
+                    ProfileInfoRow(
+                      rowKey: 'Gender: ',
+                      rowValue: 'Male',
                     ),
                     SizedBox(height: 30),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.max,
-                      children: <Widget>[
-                        Text(
-                          'Address: ',
-                          style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black54),
-                        ),
-                        SizedBox(width: 10),
-                        Expanded(
-                          child: Center(
-                            child: Text(
-                              '13/B, Eastern Park, Santoshpur, 1st Road, Kolkata -700075',
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.black),
-                            ),
-                          ),
-                        ),
-                        SvgPicture.asset(
-                          'assets/images/edit_outline.svg',
-                        ),
-                      ],
-                    ),
+                    ProfileInfoRow(
+                      rowKey: 'Address: ',
+                      rowValue:
+                          '13/B, Eastern Park, Santoshpur, 1st Road, Kolkata -700075',
+                    )
                   ],
                 ),
               )
