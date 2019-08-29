@@ -169,7 +169,25 @@ class ProfileScreen extends StatelessWidget {
                 ),
               )
             ],
-          )
+          ),
+          SafeArea(
+            child: InkWell(
+              splashColor: Colors.black,
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: 15,
+                  top: 10,
+                ),
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  size: 30,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
