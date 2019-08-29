@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:synd_innovate/profile_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -13,7 +14,15 @@ class DashboardScreen extends StatelessWidget {
           color: Colors.black87,
           size: 70,
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) {
+                return ProfileScreen();
+              },
+            ),
+          );
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       bottomNavigationBar: BottomAppBar(
