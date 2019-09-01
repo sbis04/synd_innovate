@@ -1,4 +1,4 @@
-package com.example.synd_innovate;
+package com.souvik_biswas.synd_innovate;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

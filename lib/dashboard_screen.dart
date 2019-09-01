@@ -81,6 +81,7 @@ class DashboardScreen extends StatelessWidget {
               Expanded(
                 child: Container(
                   child: GridView.builder(
+                    physics: BouncingScrollPhysics(),
                     gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2),
                     itemCount: 10,
