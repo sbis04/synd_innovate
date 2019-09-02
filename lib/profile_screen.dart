@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:synd_innovate/login_screen.dart';
 import 'package:synd_innovate/profile_info_row.dart';
 import 'package:synd_innovate/sign_in.dart';
 
@@ -181,6 +182,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Icon(
                   Icons.arrow_back_ios,
                   size: 30,
+                ),
+              ),
+            ),
+          ),
+          SafeArea(
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 5, 5, 0),
+                child: RaisedButton(
+                  elevation: 8,
+                  color: Colors.blue[600],
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Text(
+                    "SIGN OUT",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  onPressed: () {
+                    signOutGoogle();
+                    Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                        builder: (context) => LoginScreen(),
+                      ),
+                      ModalRoute.withName('/'),
+                    );
+                  },
                 ),
               ),
             ),
