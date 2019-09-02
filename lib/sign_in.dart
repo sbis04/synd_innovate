@@ -14,10 +14,10 @@ final CollectionReference mainCollection =
     Firestore.instance.collection('synd');
 
 // use this for testing database
-// final DocumentReference documentReference = mainCollection.document('test');
+final DocumentReference documentReference = mainCollection.document('test');
 
 // use this for production [Warning: LIVE Database]
-final DocumentReference documentReference = mainCollection.document('test');
+// final DocumentReference documentReference = mainCollection.document('prod');
 
 Future getUser() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();

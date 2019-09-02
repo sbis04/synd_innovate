@@ -1,8 +1,29 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:synd_innovate/profile_screen.dart';
+import 'package:synd_innovate/sign_in.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
+  @override
+  _DashboardScreenState createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+  Future getProducts() async {
+    QuerySnapshot productQuery =
+        await documentReference.collection('products').getDocuments();
+
+    return productQuery.documents;
+  }
+
+  // Future getUserData() async {
+  //   QuerySnapshot userData =
+  //       await documentReference.collection('user_data').getDocuments();
+
+  //   return userData;
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,32 +101,42 @@ class DashboardScreen extends StatelessWidget {
               ),
               Expanded(
                 child: Container(
-                  child: GridView.builder(
-                    physics: BouncingScrollPhysics(),
-                    gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2),
-                    itemCount: 10,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Card(
-                          color: Color(0xCC327E81),
-                          elevation: 5,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Savings Account',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                  child: FutureBuilder(
+                    future: getProducts(),
+                    builder: (_, snapshot) {
+                      return GridView.builder(
+                        physics: BouncingScrollPhysics(),
+                        gridDelegate:
+                            new SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2),
+                        itemCount: snapshot.hasData ? snapshot.data.length : 0,
+                        itemBuilder: (BuildContext context, int index) {
+                          String prodName = snapshot.data[index].data['name'];
+                          // int prodRewardPoints =
+                          //     snapshot.data[index].data['reward_points'];
+
+                          return Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Card(
+                              color: Color(0xCC327E81),
+                              elevation: 5,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  prodName,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
+                          );
+                        },
                       );
                     },
                   ),
