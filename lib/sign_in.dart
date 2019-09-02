@@ -1,89 +1,89 @@
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:google_sign_in/google_sign_in.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-// final FirebaseAuth _auth = FirebaseAuth.instance;
-// final GoogleSignIn googleSignIn = GoogleSignIn();
-// bool authSignedIn;
-// String name;
-// String uid;
-// String imageUrl;
+final FirebaseAuth _auth = FirebaseAuth.instance;
+final GoogleSignIn googleSignIn = GoogleSignIn();
+bool authSignedIn;
+String name;
+String uid;
+String imageUrl;
 
-// final CollectionReference mainCollection =
-//     Firestore.instance.collection('daytoday');
+final CollectionReference mainCollection =
+    Firestore.instance.collection('synd');
 
-// // use this for testing database
-// // final DocumentReference documentReference = mainCollection.document('test');
+// use this for testing database
+// final DocumentReference documentReference = mainCollection.document('test');
 
-// // use this for production [Warning: LIVE Database]
-// final DocumentReference documentReference = mainCollection.document('prod');
+// use this for production [Warning: LIVE Database]
+final DocumentReference documentReference = mainCollection.document('test');
 
-// Future getUser() async {
-//   SharedPreferences prefs = await SharedPreferences.getInstance();
-//   authSignedIn = prefs.getBool('auth') ?? false;
+Future getUser() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  authSignedIn = prefs.getBool('auth') ?? false;
 
+  final FirebaseUser user = await _auth.currentUser();
+
+  if (authSignedIn == true) {
+    if (user != null) {
+      name = user.displayName;
+      uid = user.uid;
+      imageUrl = user.photoUrl;
+    }
+  }
+}
+
+// Future deleteUser() async {
 //   final FirebaseUser user = await _auth.currentUser();
 
-//   if (authSignedIn == true) {
-//     if (user != null) {
-//       name = user.displayName;
-//       uid = user.uid;
-//       imageUrl = user.photoUrl;
-//     }
-//   }
+//   user.delete();
 // }
 
-// // Future deleteUser() async {
-// //   final FirebaseUser user = await _auth.currentUser();
+Future<String> signInWithGoogle() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
+  final GoogleSignInAuthentication googleSignInAuthentication =
+      await googleSignInAccount.authentication;
 
-// //   user.delete();
-// // }
+  // FirebaseUser user = await _auth.signInWithGoogle();
 
-// Future<String> signInWithGoogle() async {
-//   SharedPreferences prefs = await SharedPreferences.getInstance();
-//   final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
-//   final GoogleSignInAuthentication googleSignInAuthentication =
-//       await googleSignInAccount.authentication;
+  final AuthCredential credential = GoogleAuthProvider.getCredential(
+    accessToken: googleSignInAuthentication.accessToken,
+    idToken: googleSignInAuthentication.idToken,
+  );
 
-//   // FirebaseUser user = await _auth.signInWithGoogle();
+  final FirebaseUser user = (await _auth.signInWithCredential(credential)).user;
+  assert(user.email != null);
+  assert(user.displayName != null);
+  assert(user.uid != null);
 
-//   final AuthCredential credential = GoogleAuthProvider.getCredential(
-//     accessToken: googleSignInAuthentication.accessToken,
-//     idToken: googleSignInAuthentication.idToken,
-//   );
+  name = user.displayName;
+  uid = user.uid;
+  imageUrl = user.photoUrl;
 
-//   final FirebaseUser user = (await _auth.signInWithCredential(credential)).user;
-//   assert(user.email != null);
-//   assert(user.displayName != null);
-//   assert(user.uid != null);
+  // if (name.contains(" ")) {
+  //   name = name.substring(0, name.indexOf(" "));
+  // }
 
-//   name = user.displayName;
-//   uid = user.uid;
-//   imageUrl = user.photoUrl;
+  assert(!user.isAnonymous);
+  assert(await user.getIdToken() != null);
 
-//   if (name.contains(" ")) {
-//     name = name.substring(0, name.indexOf(" "));
-//   }
+  final FirebaseUser currentUser = await _auth.currentUser();
+  assert(user.uid == currentUser.uid);
 
-//   assert(!user.isAnonymous);
-//   assert(await user.getIdToken() != null);
+  prefs.setBool('auth', true);
+  authSignedIn = true;
 
-//   final FirebaseUser currentUser = await _auth.currentUser();
-//   assert(user.uid == currentUser.uid);
+  return 'signInWithGoogle succeeded: $user';
+}
 
-//   prefs.setBool('auth', true);
-//   authSignedIn = true;
+void signOutGoogle() async {
+  await googleSignIn.signOut();
 
-//   return 'signInWithGoogle succeeded: $user';
-// }
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setBool('auth', false);
+  authSignedIn = false;
 
-// void signOutGoogle() async {
-//   await googleSignIn.signOut();
-
-//   SharedPreferences prefs = await SharedPreferences.getInstance();
-//   prefs.setBool('auth', false);
-//   authSignedIn = false;
-
-//   print("User Sign Out");
-// }
+  print("User Sign Out");
+}

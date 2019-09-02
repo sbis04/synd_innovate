@@ -68,41 +68,6 @@ class LoginScreen extends StatelessWidget {
                         child: Text('Sign in using OTP'),
                         onPressed: () {},
                       )
-                      // SizedBox(
-                      //   width: 300,
-                      //   child: FlatButton(
-                      //     shape: RoundedRectangleBorder(
-                      //       borderRadius: BorderRadius.circular(30),
-                      //     ),
-                      //     color: Color(0xff007AB9),
-                      //     child: Padding(
-                      //       padding: const EdgeInsets.all(6.0),
-                      //       child: Padding(
-                      //         padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-                      //         child: Row(
-                      //           mainAxisAlignment: MainAxisAlignment.start,
-                      //           children: <Widget>[
-                      //             Image(
-                      //                 image: AssetImage(
-                      //                     "assets/images/linkedin_logo.png"),
-                      //                 height: 45.0),
-                      //             Padding(
-                      //               padding: const EdgeInsets.only(left: 10),
-                      //               child: Text(
-                      //                 'Sign in with LinkedIn',
-                      //                 style: TextStyle(
-                      //                   color: Colors.white,
-                      //                   fontSize: 18,
-                      //                 ),
-                      //               ),
-                      //             )
-                      //           ],
-                      //         ),
-                      //       ),
-                      //     ),
-                      //     onPressed: () {},
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),
