@@ -1,14 +1,15 @@
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:synd_innovate/dashboard_screen.dart';
 import 'package:synd_innovate/sign_in.dart';
 
-class SignInButton extends StatefulWidget {
+class LinkedInSignInButton extends StatefulWidget {
   final String buttonImage;
   final String buttonText;
   final Color buttonColor;
   final Color textColor;
 
-  SignInButton({
+  LinkedInSignInButton({
     @required this.buttonImage,
     @required this.buttonText,
     @required this.buttonColor,
@@ -16,10 +17,10 @@ class SignInButton extends StatefulWidget {
   });
 
   @override
-  _SignInButtonState createState() => _SignInButtonState();
+  _LinkedInSignInButtonState createState() => _LinkedInSignInButtonState();
 }
 
-class _SignInButtonState extends State<SignInButton> {
+class _LinkedInSignInButtonState extends State<LinkedInSignInButton> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -54,37 +55,16 @@ class _SignInButtonState extends State<SignInButton> {
           ),
         ),
         onPressed: () {
-          signInWithGoogle().whenComplete(
-            () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return DashboardScreen();
-                  },
-                ),
-              );
-              // setState(() {
-              //   _signingIn = 'done';
-              // });
-              // Future.delayed(
-              //   const Duration(milliseconds: 800),
-              //   () => Navigator.of(context).pushNamed('/name'),
-              // );
-            },
-          ).catchError(
-            (e) => SnackBar(
-              content: Text('Error Signing In, try again !'),
-              backgroundColor: Colors.purple,
-              duration: Duration(seconds: 20),
+          return Flushbar(
+            message: 'Not yet implemented',
+            icon: Icon(
+              Icons.info_outline,
+              size: 28,
+              color: Colors.blue[200],
             ),
-          );
-          // Navigator.of(context).push(
-          //   MaterialPageRoute(
-          //     builder: (context) {
-          //       return DashboardScreen();
-          //     },
-          //   ),
-          // );
+            leftBarIndicatorColor: Colors.blue,
+            duration: Duration(seconds: 3),
+          )..show(context);
         },
       ),
     );

@@ -1,5 +1,9 @@
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
-import 'package:synd_innovate/sign_in_button.dart';
+
+import 'facebook_button.dart';
+import 'google_button.dart';
+import 'linkedIn_button.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -43,21 +47,21 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 25),
-                      SignInButton(
+                      GoogleSignInButton(
                         buttonImage: 'google_logo.png',
                         buttonText: 'Sign in with Google',
                         buttonColor: Colors.white,
                         textColor: Colors.grey,
                       ),
                       SizedBox(height: 25),
-                      SignInButton(
+                      FacebookSignInButton(
                         buttonImage: 'face_logo.png',
                         buttonText: 'Login in with Facebook',
                         buttonColor: Color(0xff3A559F),
                         textColor: Colors.white,
                       ),
                       SizedBox(height: 25),
-                      SignInButton(
+                      LinkedInSignInButton(
                         buttonImage: 'linkedin_logo.png',
                         buttonText: 'Sign in with LinkedIn',
                         buttonColor: Color(0xff007AB9),
@@ -66,7 +70,18 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(height: 25),
                       FlatButton(
                         child: Text('Sign in using OTP'),
-                        onPressed: () {},
+                        onPressed: () {
+                          return Flushbar(
+                            message: 'Not yet implemented',
+                            icon: Icon(
+                              Icons.info_outline,
+                              size: 28,
+                              color: Colors.blue[200],
+                            ),
+                            leftBarIndicatorColor: Colors.blue,
+                            duration: Duration(seconds: 3),
+                          )..show(context);
+                        },
                       )
                     ],
                   ),
