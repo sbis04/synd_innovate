@@ -17,11 +17,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return productQuery.documents;
   }
 
-  // Future getUserData() async {
-  //   QuerySnapshot userData =
-  //       await documentReference.collection('user_data').getDocuments();
+  Future getUserData() async {
+    DocumentSnapshot userData =
+        await documentReference.collection('user_data').document(uid).get();
 
-  //   return userData;
+    return userData;
+  }
+
+  // void _addUserData() {
+  //   DocumentReference documentReferencer =
+  //       documentReference.collection('user_data').document(uid);
+
+  //   Map<String, dynamic> data = <String, dynamic>{
+  //     "name": name,
+  //     "leads": 10,
+  //     "reward_points": 4800,
+  //     "partner_level": 1,
+  //     "green_check": 'true',
+  //   };
+
+  //   documentReferencer.setData(data).whenComplete(() {
+  //     print("document added");
+  //   }).catchError((e) => print(e));
   // }
 
   @override
@@ -30,10 +47,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFFFFA700),
         elevation: 5.0,
-        child: Icon(
-          Icons.account_circle,
-          color: Colors.black87,
-          size: 70,
+        // child: Icon(
+        //   Icons.account_circle,
+        //   color: Colors.black87,
+        //   size: 70,
+        // ),
+        child: Stack(
+          children: <Widget>[
+            CircleAvatar(
+              radius: 50,
+              backgroundColor: Colors.transparent,
+              child: Icon(Icons.account_circle, size: 50),
+            ),
+            CircleAvatar(
+              backgroundImage: NetworkImage(
+                imageUrl,
+              ),
+              radius: 50,
+              backgroundColor: Colors.transparent,
+            ),
+          ],
         ),
         onPressed: () {
           Navigator.of(context).push(
@@ -54,9 +87,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Text(
-                '10 Leads',
-                style: TextStyle(color: Colors.white, fontSize: 20),
+              child: FutureBuilder(
+                future: getUserData(),
+                builder: (_, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Text(
+                      'Leads',
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    );
+                  } else if (snapshot.hasData) {
+                    int numberOfLeads = snapshot.data['leads'];
+
+                    return Text(
+                      numberOfLeads.toString() + ' Leads',
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    );
+                  } else {
+                    return Text(
+                      'No data',
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    );
+                  }
+                },
               ),
             )
           ],
