@@ -139,6 +139,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     color: Color(0xffFFCD00),
                     child: SafeArea(
                       child: CarouselSlider(
+                        autoPlay: true,
                         viewportFraction: 1.0,
                         height: 250,
                         items: <Widget>[
@@ -156,40 +157,47 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   child: FutureBuilder(
                     future: getProducts(),
                     builder: (_, snapshot) {
-                      return GridView.builder(
-                        physics: BouncingScrollPhysics(),
-                        gridDelegate:
-                            new SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2),
-                        itemCount: snapshot.hasData ? snapshot.data.length : 0,
-                        itemBuilder: (BuildContext context, int index) {
-                          String prodName = snapshot.data[index].data['name'];
-                          // int prodRewardPoints =
-                          //     snapshot.data[index].data['reward_points'];
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else {
+                        return GridView.builder(
+                          physics: BouncingScrollPhysics(),
+                          gridDelegate:
+                              new SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2),
+                          itemCount:
+                              snapshot.hasData ? snapshot.data.length : 0,
+                          itemBuilder: (BuildContext context, int index) {
+                            String prodName = snapshot.data[index].data['name'];
+                            // int prodRewardPoints =
+                            //     snapshot.data[index].data['reward_points'];
 
-                          return Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Card(
-                              color: Color(0xCC327E81),
-                              elevation: 5,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  prodName,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
+                            return Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Card(
+                                color: Color(0xCC327E81),
+                                elevation: 5,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    prodName,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          );
-                        },
-                      );
+                            );
+                          },
+                        );
+                      }
                     },
                   ),
                 ),
