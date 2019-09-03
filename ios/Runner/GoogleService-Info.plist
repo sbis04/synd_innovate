@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>324938861940-aaqm07cujlngr1831i2c6jb5n00re6no.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.324938861940-aaqm07cujlngr1831i2c6jb5n00re6no</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>324938861940-f5a20uu8qj7peqb9uno11jrgco6hdv0p.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC3XItk02XWfpFWqLkwW9rdSrZoPxPKuiA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>324938861940</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.syndInnovate</string>
+	<key>PROJECT_ID</key>
+	<string>synd-innovate-cc92e</string>
+	<key>STORAGE_BUCKET</key>
+	<string>synd-innovate-cc92e.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:324938861940:ios:49b036179a9ea046</string>
+	<key>DATABASE_URL</key>
+	<string>https://synd-innovate-cc92e.firebaseio.com</string>
+</dict>
+</plist>
