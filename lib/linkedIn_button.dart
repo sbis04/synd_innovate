@@ -1,7 +1,5 @@
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
-import 'package:synd_innovate/dashboard_screen.dart';
-import 'package:synd_innovate/sign_in.dart';
 
 class LinkedInSignInButton extends StatefulWidget {
   final String buttonImage;

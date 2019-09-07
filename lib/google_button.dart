@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:synd_innovate/dashboard_screen.dart';
+import 'package:synd_innovate/details_screen.dart';
 import 'package:synd_innovate/sign_in.dart';
 
 class GoogleSignInButton extends StatefulWidget {
@@ -21,6 +24,23 @@ class GoogleSignInButton extends StatefulWidget {
 
 class _GoogleSignInButtonState extends State<GoogleSignInButton> {
   String _signingIn = 'idle';
+  bool _docExists = false;
+
+  Future ifDocExists() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    DocumentReference documentReferencer =
+        documentReference.collection('user_data').document(uid);
+
+    await documentReferencer.get().then((doc) {
+      if (doc.exists) {
+        _docExists = true;
+        prefs.setBool('auth', true);
+        authSignedIn = true;
+      } else {
+        _docExists = false;
+      }
+    });
+  }
 
   Widget _signInButton() {
     switch (_signingIn) {
@@ -103,16 +123,67 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
               setState(() {
                 _signingIn = 'done';
               });
-              Future.delayed(
-                const Duration(milliseconds: 800),
-                () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return DashboardScreen();
-                    },
-                  ),
+
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return FutureBuilder(
+                      future: ifDocExists(),
+                      builder: (_, snapshot) {
+                        // if (snapshot.connectionState ==
+                        //     ConnectionState.waiting) {
+                        //   return Container(
+                        //     color: Color(0xffFFCD00),
+                        //     child: Center(
+                        //       child: CircularProgressIndicator(),
+                        //     ),
+                        //   );
+                        // } else
+                        if (!_docExists) {
+                          return DetailScreen();
+                        } else {
+                          return DashboardScreen();
+                        }
+                      },
+                    );
+                  },
                 ),
               );
+
+              // FutureBuilder(
+              //   future: ifDocExists(),
+              //   builder: (_, snapshot) {
+              //     if (_docExists) {
+              //     } else {
+              //       Navigator.of(context).push(
+              //         MaterialPageRoute(
+              //           builder: (context) {
+              //             return DetailScreen();
+              //           },
+              //         ),
+              //       );
+              //     }
+              //   },
+              // );
+              // Future.delayed(const Duration(milliseconds: 800), () {
+              //   if (_docExists) {
+              //     Navigator.of(context).push(
+              //       MaterialPageRoute(
+              //         builder: (context) {
+              //           return DashboardScreen();
+              //         },
+              //       ),
+              //     );
+              //   } else {
+              //     Navigator.of(context).push(
+              //       MaterialPageRoute(
+              //         builder: (context) {
+              //           return DetailScreen();
+              //         },
+              //       ),
+              //     );
+              //   }
+              // });
             },
           ).catchError(
             (e) => SnackBar(

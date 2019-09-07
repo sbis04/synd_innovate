@@ -41,7 +41,7 @@ Future getUser() async {
 // }
 
 Future<String> signInWithGoogle() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
+  // SharedPreferences prefs = await SharedPreferences.getInstance();
   final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
   final GoogleSignInAuthentication googleSignInAuthentication =
       await googleSignInAccount.authentication;
@@ -72,8 +72,8 @@ Future<String> signInWithGoogle() async {
   final FirebaseUser currentUser = await _auth.currentUser();
   assert(user.uid == currentUser.uid);
 
-  prefs.setBool('auth', true);
-  authSignedIn = true;
+  // prefs.setBool('auth', true);
+  // authSignedIn = true;
 
   return 'signInWithGoogle succeeded: $user';
 }
