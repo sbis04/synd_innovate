@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
               children: <Widget>[
                 Image.asset('assets/images/logo.png'),
                 CircularProgressIndicator(
-                  valueColor: new AlwaysStoppedAnimation<Color>(
+                  valueColor: AlwaysStoppedAnimation<Color>(
                     Color(0xFFF6711D),
                   ),
                 ),
