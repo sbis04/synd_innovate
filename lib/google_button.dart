@@ -26,7 +26,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
   String _signingIn = 'idle';
   bool _docExists = false;
 
-  Future ifDocExists() async {
+  Future<bool> ifDocExists() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     DocumentReference documentReferencer =
         documentReference.collection('user_data').document(uid);
@@ -40,6 +40,8 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
         _docExists = false;
       }
     });
+
+    return _docExists;
   }
 
   Widget _signInButton() {
@@ -124,31 +126,54 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                 _signingIn = 'done';
               });
 
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return FutureBuilder(
-                      future: ifDocExists(),
-                      builder: (_, snapshot) {
-                        // if (snapshot.connectionState ==
-                        //     ConnectionState.waiting) {
-                        //   return Container(
-                        //     color: Color(0xffFFCD00),
-                        //     child: Center(
-                        //       child: CircularProgressIndicator(),
-                        //     ),
-                        //   );
-                        // } else
-                        if (!_docExists) {
-                          return DetailScreen();
-                        } else {
-                          return DashboardScreen();
-                        }
-                      },
-                    );
-                  },
+              ifDocExists().then((success) {
+                if (success) {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => DashboardScreen(),
+                    ),
+                  );
+                } else {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => DetailScreen(),
+                    ),
+                  );
+                }
+              });
+
+              return Container(
+                color: Color(0xffFFCD00),
+                child: Center(
+                  child: CircularProgressIndicator(),
                 ),
               );
+
+              // Navigator.of(context).push(
+              //   MaterialPageRoute(
+              //     builder: (context) {
+              //       return FutureBuilder(
+              //         future: ifDocExists(),
+              //         builder: (_, snapshot) {
+              //           // if (snapshot.connectionState ==
+              //           //     ConnectionState.waiting) {
+              //           //   return Container(
+              //           //     color: Color(0xffFFCD00),
+              //           //     child: Center(
+              //           //       child: CircularProgressIndicator(),
+              //           //     ),
+              //           //   );
+              //           // } else
+              //           if (!_docExists) {
+              //             return DetailScreen();
+              //           } else {
+              //             return DashboardScreen();
+              //           }
+              //         },
+              //       );
+              //     },
+              //   ),
+              // );
 
               // FutureBuilder(
               //   future: ifDocExists(),
