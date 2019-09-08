@@ -82,7 +82,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 250,
+      width: 280,
       child: FlatButton(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
