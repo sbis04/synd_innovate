@@ -64,6 +64,7 @@ class _DetailScreenState extends State<DetailScreen> {
         documentReference.collection('user_data').document(uid);
 
     Map<String, dynamic> data = <String, dynamic>{
+      "image_url": imageUrl,
       "name": name,
       "leads": 0,
       "level": 0,

@@ -53,6 +53,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 String address = snapshot.data['address'];
                 String name = snapshot.data['name'];
 
+                String levelString;
+
+                if (level == 0) {
+                  levelString = '';
+                } else if (level == 1) {
+                  levelString = 'medal_1.png';
+                } else if (level == 2) {
+                  levelString = 'medal_2.png';
+                } else {
+                  levelString = 'medal_3.png';
+                }
+
                 return SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
@@ -119,10 +131,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   SizedBox(height: 10),
-                                  SvgPicture.asset(
-                                    'assets/images/level_1.svg',
-                                    color: Color(0xFF3100FF),
-                                  ),
+                                  // SvgPicture.asset(
+                                  //   'assets/images/medal_1.png',
+                                  //   color: Color(0xFF3100FF),
+                                  // ),
+                                  levelString != ''
+                                      ? Image.asset(
+                                          'assets/images/$levelString',
+                                          color: Color(0xFF3100FF),
+                                          height: 120,
+                                        )
+                                      : Text(''),
                                   SizedBox(height: 30),
                                 ],
                               ),
