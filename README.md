@@ -1,7 +1,7 @@
 # Synd Innovate Agents/Users 
 ![codemagic](https://api.codemagic.io/apps/5d74d70e166ac95263f77de5/5d74d70e166ac95263f77de4/status_badge.svg)
 
-**Note:** The app is configured for both iOS and Android, and will run on both platforms smoothly.
+**Note:** The app is configured for both **iOS** and **Android**, and will run on both platforms smoothly.
 
 ## Installing
 * First of all, you should have **Flutter** and **Dart SDK** set up on your system. You should also have **Android Studio** installed on your system because with it comes the Android toolchain, without which you cannot run it on any Android device or emulator. 
@@ -22,6 +22,7 @@ cd synd_innovate
 ```bash
 flutter run
 ```
+
 ## Login Screen
 The app for the users will have a splash screen at first which will take them to the login screen. The user can Login with their Social Accounts like, Google, Facebook, LinkedIn, etc. or they can just Login with their mobile number using OTP Verification.
 
