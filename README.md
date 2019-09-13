@@ -19,6 +19,9 @@ The app for the users will have a splash screen at first which will take them to
 
 * The user can also transfer their reward points to their bank account for encashing them, by clicking on the Transfer to Bank option.
 
+## Screenshots
+<img src="https://github.com/sbis04/synd_innovate_prototype/blob/master/Agents%20Screenshot/Agents_1.png" height="350" alt="Screenshot"/> | <img src="https://github.com/sbis04/synd_innovate_prototype/blob/master/Agents%20Screenshot/Agents_2.png" height="350" alt="Screenshot"/> | <img src="https://github.com/sbis04/synd_innovate_prototype/blob/master/Agents%20Screenshot/Agents_3.png" height="350" alt="Screenshot"/> | <img src="https://github.com/sbis04/synd_innovate_prototype/blob/master/Agents%20Screenshot/Agents_4.png" height="350" alt="Screenshot"/>
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
