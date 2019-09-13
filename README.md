@@ -1,6 +1,23 @@
-# synd_innovate
+# Synd Innovate Agents/Users
 
-A new Flutter project.
+## Login Screen
+The app for the users will have a splash screen at first which will take them to the login screen. The user can Login with their Social Accounts like, Google, Facebook, LinkedIn, etc. or they can just Login with their mobile number using OTP Verification.
+
+## Dashboard Screen
+* After a successful Login, the user will be taken to their Dashboard where they access different products for referral like Saving Account, Credit Card, Housing Loan, Personal Loan, etc., users can use these options for referring a particular product to another user and get reward points on successful conversion of leads.
+
+* Users can also see the Number of Leads Generated on in their Dashboard screen.
+
+* On the top of their Dashboard a place will be reserved for showing any Discounts and Offers available on conversion of Leads, like bonus reward points, etc.
+
+* From the dashboard, users can also view their profile information by clicking on their profile image in the bottom app bar.
+
+## User Detail Screen
+* The User Detail screen will contain the informations like, Number of Leads Generated, Total Reward Points, Partner Level (Level 1 Partner, Level 2 Partner or Top Level Partner) and their respective badge & Personal Informations of the user.
+
+* If the user has converted more than 100 Leads (which is the milestone value) than a green tick mark will be visible beside their name.
+
+* The user can also transfer their reward points to their bank account for encashing them, by clicking on the Transfer to Bank option.
 
 ## Getting Started
 
