@@ -1,4 +1,5 @@
-# Synd Innovate Agents/Users
+# Synd Innovate Agents/Users 
+![codemagic](https://api.codemagic.io/apps/5d74d70e166ac95263f77de5/5d74d70e166ac95263f77de4/status_badge.svg)
 
 ## Login Screen
 The app for the users will have a splash screen at first which will take them to the login screen. The user can Login with their Social Accounts like, Google, Facebook, LinkedIn, etc. or they can just Login with their mobile number using OTP Verification.
