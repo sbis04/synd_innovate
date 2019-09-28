@@ -30,26 +30,45 @@ class ProfileInfoRow extends StatelessWidget {
         ),
         Expanded(
           flex: 2,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: assetName != null
-                ? Row(
-                    children: <Widget>[
-                      Text(
-                        rowValue,
-                        style: TextStyle(fontSize: 20, color: Colors.black),
-                      ),
-                      SizedBox(width: 5),
-                      SvgPicture.asset(
-                        'assets/images/$assetName',
-                        color: Color(0xFF168B2D),
-                      ),
-                    ],
-                  )
-                : Text(
-                    rowValue,
-                    style: TextStyle(fontSize: 20, color: Colors.black),
-                  ),
+          child: Wrap(
+            children: <Widget>[
+              assetName != null
+                  ? Row(
+                      children: <Widget>[
+                        Text(
+                          rowValue,
+                          style: TextStyle(fontSize: 20, color: Colors.black),
+                        ),
+                        SizedBox(width: 5),
+                        SvgPicture.asset(
+                          'assets/images/$assetName',
+                          color: Color(0xFF168B2D),
+                        ),
+                      ],
+                    )
+                  : Text(
+                      rowValue,
+                      style: TextStyle(fontSize: 20, color: Colors.black),
+                    ),
+            ],
+            // child: assetName != null
+            //     ? Row(
+            //         children: <Widget>[
+            //           Text(
+            //             rowValue,
+            //             style: TextStyle(fontSize: 20, color: Colors.black),
+            //           ),
+            //           SizedBox(width: 5),
+            //           SvgPicture.asset(
+            //             'assets/images/$assetName',
+            //             color: Color(0xFF168B2D),
+            //           ),
+            //         ],
+            //       )
+            //     : Text(
+            //         rowValue,
+            //         style: TextStyle(fontSize: 20, color: Colors.black),
+            //       ),
           ),
         ),
         SvgPicture.asset(
