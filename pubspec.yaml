@@ -32,6 +32,7 @@ dependencies:
   flushbar: ^1.9.0
   connectivity: ^0.4.4
   flare_flutter: ^1.5.9
+  qr_flutter: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -52,6 +53,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
    - assets/images/
+   - assets/icons/
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
