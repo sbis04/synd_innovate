@@ -5,6 +5,8 @@ import 'package:synd_innovate/login_screen.dart';
 import 'package:synd_innovate/profile_info_row.dart';
 import 'package:synd_innovate/sign_in.dart';
 
+import 'lead_detail.dart';
+
 class ProfileScreen extends StatefulWidget {
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -104,12 +106,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     ],
                                   ),
                                   SizedBox(height: 20),
-                                  Text(
-                                    '$numberOfLeads Leads',
-                                    style: TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
+                                  InkWell(
+                                    child: Text(
+                                      '$numberOfLeads Leads',
+                                      style: TextStyle(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) => LeadDetail(
+                                            imageUrl,
+                                            numberOfLeads,
+                                            rewardPoints,
+                                          ),
+                                        ),
+                                      );
+                                    },
                                   ),
                                   SizedBox(height: 10),
                                   Text(
